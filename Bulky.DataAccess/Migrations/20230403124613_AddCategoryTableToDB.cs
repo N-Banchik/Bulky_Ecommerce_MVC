@@ -2,8 +2,10 @@
 
 #nullable disable
 
-namespace BulkyWeb.Migrations
+namespace Bulky.DataAccess.Migrations
 {
+
+
     /// <inheritdoc />
     public partial class AddCategoryTableToDB : Migration
     {
@@ -32,4 +34,5 @@ namespace BulkyWeb.Migrations
                 name: "Categories");
         }
     }
+
 }
