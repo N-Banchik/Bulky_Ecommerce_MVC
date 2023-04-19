@@ -24,16 +24,33 @@ namespace Bulky.DataAccess.Repository
             _dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProps = null)
         {
             IQueryable<T> query = _dbSet.AsQueryable();
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProps))
+            {
+                string[] propList = includeProps.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < propList.Length; i++)
+                {
+                    query = query.Include(propList[i]);
+                }
+            }
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProps = null)
         {
-            return _dbSet.ToList();
+            IQueryable<T> query = _dbSet.AsQueryable();
+            if (!string.IsNullOrEmpty(includeProps))
+            {
+                string[] propList = includeProps.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < propList.Length; i++)
+                {
+                    query = query.Include(propList[i]);
+                }
+            }
+            return query.ToList();
         }
 
         public void Remove(T entity)
