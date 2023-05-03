@@ -11,9 +11,9 @@ namespace Bulky.DataAccess.Repository
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
-        private readonly DtatContext _db;
+        private readonly DataContext _db;
 
-        public ProductRepository(DtatContext db) : base(db)
+        public ProductRepository(DataContext db) : base(db)
         {
             _db = db;
         }

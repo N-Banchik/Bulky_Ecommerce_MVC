@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bulky.DataAccess.Migrations
 {
-    [DbContext(typeof(DtatContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20230411090500_AddImageUrlToProduct")]
     partial class AddImageUrlToProduct
     {

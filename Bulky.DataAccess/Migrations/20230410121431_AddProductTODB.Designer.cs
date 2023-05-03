@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bulky.DataAccess.Migrations
 {
-    [DbContext(typeof(DtatContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20230410121431_AddProductTODB")]
     partial class AddProductTODB
     {

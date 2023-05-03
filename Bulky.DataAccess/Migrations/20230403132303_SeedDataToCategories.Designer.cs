@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Bulky.DataAccess.Migrations
 
 {
-    [DbContext(typeof(DtatContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20230403132303_SeedDataToCategories")]
     partial class SeedDataToCategories
     {

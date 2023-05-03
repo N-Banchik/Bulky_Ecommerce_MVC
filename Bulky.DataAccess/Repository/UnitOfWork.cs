@@ -10,15 +10,27 @@ namespace Bulky.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DtatContext _db;
+        private readonly DataContext _db;
+
         public ICategoryRepository Category { get; private set; }
         public IProductRepository Product { get; private set; }
+        public ICompanyRepository Company { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IOrderHeaderRepository OrderHeader { get; private set; }
+        public IOrderDetailsRepository OrderDetails { get; private set; }
+        public IAppUSerRepository AppUSer { get; private set; }
 
-        public UnitOfWork(DtatContext db,ICategoryRepository category,IProductRepository product)
+        public UnitOfWork(DataContext db, ICategoryRepository category, IProductRepository product, ICompanyRepository company, IShoppingCartRepository shoppingCart,
+            IOrderHeaderRepository orderHeader, IOrderDetailsRepository orderDetails,IAppUSerRepository appUSer)
         {
             _db = db;
             Category = category;
             Product = product;
+            Company = company;
+            ShoppingCart = shoppingCart;
+            OrderHeader = orderHeader;
+            OrderDetails = orderDetails;
+            AppUSer = appUSer;
         }
 
         public void SaveChanges()

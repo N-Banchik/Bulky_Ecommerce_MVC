@@ -1,0 +1,38 @@
+﻿@model List<Company>
+
+<div class="card shadow border-0 mt-4">
+    <div class=" card-header bg-secondary bg-gradient m-lg-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Companies List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="col-6"></div>
+        <div class="row p-3 col-6 text-end ">
+            <a asp-controller="Company" asp-action="UpsertCompany" class="btn text-center btn-primary">
+                <i class="bi bi-plus-circle"></i> Add New Company
+            </a>
+        </div>
+
+        <table id="tblData" class="table shadow table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Street Address</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Zipcode</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script src="~/js/Company.js"></script>
+}

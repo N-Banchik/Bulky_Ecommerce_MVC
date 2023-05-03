@@ -161,4 +161,72 @@ namespace Bulky.DataAccess.EntityConfigs
 
         }
     }
+
+    internal class CompanyConfig : IEntityTypeConfiguration<Company>
+    {
+        public void Configure(EntityTypeBuilder<Company> entity)
+        {
+            entity.HasKey(c => c.Id);
+            entity.Property(n => n.Name).IsRequired();
+            entity.HasData(new[]
+            {
+           new Company { Id = 1,Name="MetroMind",PhoneNumber="+1 202-918-2132",StreetAddress="237-205 E 12th St",City="New York",Country="New York",Zipcode="10003"},
+           new Company { Id = 2,Name="OptiTrip",PhoneNumber="+1 505-554-9438",StreetAddress="2475 Grayling St",City="Hamtramck",Country="Michigan",Zipcode="48212"},
+           new Company { Id = 3,Name="EliteTransit",PhoneNumber="+49 170 77261952",StreetAddress="Klenzestraße 18",City="München",Country="Germany",Zipcode="80469 "},
+        });
+            
+        }
+    }
+    internal class AppUserConfig : IEntityTypeConfiguration<AppUser>
+    {
+        public void Configure(EntityTypeBuilder<AppUser> entity)
+        {
+            entity.HasKey(c => c.Id);
+            entity.HasOne(c => c.Company).WithOne().HasForeignKey("CompanyId");
+
+        }
+    }
+    internal class ShoppingCartConfig : IEntityTypeConfiguration<ShoppingCart>
+    {
+        public void Configure(EntityTypeBuilder<ShoppingCart> entity)
+        {
+            entity.HasKey(c => c.Id);
+            entity.HasOne(c => c.Product).WithMany().HasForeignKey("ProductId");
+            entity.HasOne(c => c.User).WithMany().HasForeignKey("UserId");
+
+        }
+    }
+
+    internal class OrderDetailsConfig : IEntityTypeConfiguration<OrderDetail>
+    {
+        public void Configure(EntityTypeBuilder<OrderDetail> entity)
+        {
+            entity.HasKey(c => c.Id);
+            entity.HasOne(c => c.Product).WithMany().HasForeignKey("ProductId");
+            entity.HasOne(c => c.OrderHeader).WithMany().HasForeignKey("OrderHeaderId");
+            entity.Property(o=>o.OrderHeaderId).IsRequired();
+            entity.Property(o=>o.ProductId).IsRequired();
+
+
+        }
+    }
+    internal class OrderHeadersConfig : IEntityTypeConfiguration<OrderHeader>
+    {
+        public void Configure(EntityTypeBuilder<OrderHeader> entity)
+        {
+            entity.HasKey(c => c.Id);
+            entity.HasOne(c => c.User).WithMany().HasForeignKey("UserId");
+            entity.Property(o => o.UserId).IsRequired();
+            entity.Property(o => o.PhoneNumber).IsRequired();
+            entity.Property(o => o.Name).IsRequired();
+            entity.Property(o => o.StreetAddress).IsRequired();
+            entity.Property(o => o.City).IsRequired();
+            entity.Property(o => o.Zipcode).IsRequired();
+            entity.Property(o => o.Country).IsRequired();
+
+
+        }
+    }
+
+
 }

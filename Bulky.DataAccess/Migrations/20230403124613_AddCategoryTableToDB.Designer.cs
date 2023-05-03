@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 
 {
-    [DbContext(typeof(DtatContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20230403124613_AddCategoryTableToDB")]
     partial class AddCategoryTableToDB
     {

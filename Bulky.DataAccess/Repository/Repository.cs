@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using Bulky.DataAccess.Data;
 using Bulky.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Bulky.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DtatContext _db;
+        private readonly DataContext _db;
         internal DbSet<T> _dbSet;
-        public Repository(DtatContext db)
+        public Repository(DataContext db)
         {
             _db = db;
             _dbSet = _db.Set<T>();
@@ -24,10 +25,14 @@ namespace Bulky.DataAccess.Repository
             _dbSet.Add(entity);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProps = null)
+        public T Get(Expression<Func<T, bool>>? filter, string? includeProps = null)
         {
             IQueryable<T> query = _dbSet.AsQueryable();
-            query = query.Where(filter);
+            if (filter != null)
+            {
+                query = query.Where(filter);
+
+            }
             if (!string.IsNullOrEmpty(includeProps))
             {
                 string[] propList = includeProps.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -39,9 +44,15 @@ namespace Bulky.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll(string? includeProps = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProps = null)
         {
             IQueryable<T> query = _dbSet.AsQueryable();
+            if (filter != null)
+            {
+                query = query.Where(filter);
+
+            }
+           
             if (!string.IsNullOrEmpty(includeProps))
             {
                 string[] propList = includeProps.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

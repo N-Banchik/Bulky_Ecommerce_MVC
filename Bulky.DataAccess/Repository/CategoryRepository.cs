@@ -11,9 +11,9 @@ namespace Bulky.DataAccess.Repository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        private readonly DtatContext _db;
+        private readonly DataContext _db;
 
-        public CategoryRepository(DtatContext db) : base(db)
+        public CategoryRepository(DataContext db) : base(db)
         {
             _db = db;
         }
