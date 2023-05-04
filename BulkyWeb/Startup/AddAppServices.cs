@@ -32,6 +32,12 @@ namespace BulkyWeb.Startup
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+
+            services.AddAuthentication().AddFacebook(options => {
+
+                options.AppId = _config.GetSection("Facebook")["AppID"];
+                options.AppSecret = _config.GetSection("Facebook")["Appsecret"];
+            });
             return services;
         }
     }

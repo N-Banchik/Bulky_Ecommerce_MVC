@@ -134,8 +134,8 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
         {
             Input = new()
             {
-                RoleList = _roleManger.Roles.Where(x => x.Name == SD.Role_User_Cust || x.Name == SD.Role_User_Comp)
-                .Select(x => x.Name).Select(i => new SelectListItem { Text = i, Value = i }),
+                RoleList = _roleManger.Roles.Select(x => x.Name)
+                .Select(i => new SelectListItem { Text = i, Value = i }),
                 CompanyList = _unitOfWork.Company.GetAll().Select(i => new SelectListItem { Text = i.Name, Value = i.Id.ToString() })
             };
 
@@ -196,7 +196,11 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        if (!User.IsInRole(SD.Role_Admin))
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
+                        TempData["success"] = "A new User Created Successfully";
                         return LocalRedirect(returnUrl);
                     }
                 }

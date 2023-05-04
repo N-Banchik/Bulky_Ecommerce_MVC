@@ -31,9 +31,10 @@ try
 {
     DataContext context = services.GetRequiredService<DataContext>();
     RoleManager<IdentityRole> roleManager = services.GetService<RoleManager<IdentityRole>>()!;
+    UserManager<IdentityUser> userManager = services.GetService<UserManager<IdentityUser>>()!;
 
     await context.Database.MigrateAsync();
-    SeedData sd = new SeedData(context, roleManager);
+    SeedData sd = new SeedData(context, roleManager,userManager);
     await sd.SeedDataOnStartup();
 }
 catch (System.Exception ex)

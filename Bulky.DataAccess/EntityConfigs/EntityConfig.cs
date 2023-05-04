@@ -53,7 +53,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 97.99,
                 Price50 = 89.99,
                 Price100 = 84.99,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\91d4d68c-df73-460e-852f-c3a5a95ab58f.jpeg"
             },
             new Product
             {
@@ -67,7 +67,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 78.39,
                 Price50 = 71.99,
                 Price100 = 67.99,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\b00e17b6-2b75-4325-b8c1-d8aa20f053d5.jpg"
             },
             new Product
             {
@@ -81,7 +81,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 127.39,
                 Price50 = 116.99,
                 Price100 = 110.49,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\a613d850-2772-4650-a518-8ac1582ee8d0.jpg"
             },
             new Product
             {
@@ -95,7 +95,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 58.79,
                 Price50 = 53.99,
                 Price100 = 50.99,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\6e74fdf6-3cd9-4881-8319-0f2f53e07c07.jpg"
             },
 
                new Product
@@ -110,7 +110,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 97.99,
                 Price50 = 89.99,
                 Price100 = 84.99,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\0f4304d9-c3e9-4826-a576-574a1f6619a8.jpg"
             },
             new Product
             {
@@ -124,7 +124,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 78.39,
                 Price50 = 71.99,
                 Price100 = 67.99,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\7fdfaaef-b424-4e3d-8149-18e8f42516e3.jpg"
             },
             new Product
             {
@@ -138,7 +138,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 127.39,
                 Price50 = 116.99,
                 Price100 = 110.49,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\86d697b5-6932-44eb-9a26-edf6c6e20b2a.jpg"
             },
             new Product
             {
@@ -152,7 +152,7 @@ namespace Bulky.DataAccess.EntityConfigs
                 Price = 58.79,
                 Price50 = 53.99,
                 Price100 = 50.99,
-                ImageUrl=""
+                ImageUrl="\\Images\\Product\\1c73a674-43ed-497a-ba0f-d1c013191a3a.jpg"
             },
 
             });

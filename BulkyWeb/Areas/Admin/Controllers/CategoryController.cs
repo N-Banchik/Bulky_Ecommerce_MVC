@@ -8,7 +8,7 @@ using Bulky.Utility;
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles =SD.Role_Admin)]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -24,9 +24,26 @@ namespace BulkyWeb.Areas.Admin.Controllers
             categories = (List<Category>)_unitOfWork.Category.GetAll();
             return View(categories);
         }
-        public IActionResult CreateCategory()
+        public IActionResult CreateCategory(int? id)
         {
-            return View();
+            Category category = new Category();
+
+            if (id == null || id == 0)
+            {
+                category = new();
+                return View(category);
+
+            }
+            else
+            {
+                Category? categoryToEdit = _unitOfWork.Category.Get(c => c.Id == id);
+                if (categoryToEdit == null)
+                {
+                    return NotFound();
+                }
+
+                return View(categoryToEdit);
+            }
         }
         [HttpPost]
         public IActionResult CreateCategory(Category category)
@@ -97,5 +114,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
 
         }
+
+        #region API Calls
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Category> categories = (List<Category>)_unitOfWork.Category.GetAll().OrderBy(o=>o.DisplayOrder).ToList();
+            return Json(new { data = categories });
+        }
+        #endregion
     }
 }
